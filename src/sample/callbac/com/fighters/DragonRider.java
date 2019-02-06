@@ -3,8 +3,9 @@ package src.sample.callbac.com.fighters;
 import src.sample.callbac.com.fighters.base.BaseFighter;
 import src.sample.callbac.com.fighters.base.FightBreakAction;
 import src.sample.callbac.com.fighters.base.PostFightActions;
+import src.sample.callbac.com.fighters.base.PreFightActions;
 
-public class DragonRider extends BaseFighter implements PostFightActions, FightBreakAction {
+public class DragonRider extends BaseFighter implements PostFightActions, FightBreakAction, PreFightActions {
 
     Dragon dragonPet = null;
     private int pureAttack;
@@ -28,7 +29,7 @@ public class DragonRider extends BaseFighter implements PostFightActions, FightB
     @Override
     public void action(BaseFighter opponent, int takenDamage) {
         if (!isDragonAlive()) {
-            opponent.setAttack(getPureAttack());
+            setAttack(getPureAttack());
         }
     }
 
@@ -42,7 +43,15 @@ public class DragonRider extends BaseFighter implements PostFightActions, FightB
             dragonPet = (Dragon) fighter;
             countAttack();
             countHealth();
-            callBack.fightImidiatlyDone(this);
+            System.out.println("Fighter " + this.getName() + " tamed the dragon \n");
+            callBack.fightImmediatelyDone(this);
+        }
+    }
+
+    @Override
+    public void actionWithFight(BaseFighter fighter) {
+        if (getHealth() < getFullHP()){
+            setHealth(getFullHP());
         }
     }
 }

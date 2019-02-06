@@ -16,8 +16,8 @@ public abstract class BaseFighter {
         this.fullHP = health;
     }
 
-    public int attack(BaseFighter opponentToo) {
-        opponentToo.takeDamage(attack);
+    public int attack(BaseFighter opponentTwo) {
+        opponentTwo.takeDamage(attack);
         return attack;
     }
 
