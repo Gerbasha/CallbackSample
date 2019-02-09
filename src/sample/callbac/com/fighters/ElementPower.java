@@ -1,10 +1,18 @@
-package sample.callbac.com.fighters;
+package src.sample.callbac.com.fighters;
 
 public interface ElementPower {
-    int WHATER = 0B0001;
-    int EARH = 0B0010;
-    int FIGHER = 0B0100;
-    int WIND = 0B1000;
+    enum Elements {
+        FIRE(0b0001), WATER(0b0010), EARTH(0b0100), WIND(0b1000);
+        private int value;
 
-    public int getElementPower();
+        Elements(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
+    int getElementPower();
 }
